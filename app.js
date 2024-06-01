@@ -7,7 +7,7 @@ import { APP_PORT } from './config.js';
 const app = express();
 app.use(express.json());
 
-app.use(cors({origin: 'https://farruhzoirov.uz'}));
+app.use(cors());
 
 import router  from './routes/app.route.js'
 
