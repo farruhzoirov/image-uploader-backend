@@ -10,12 +10,12 @@ export const createLocationData = async (req, res) => {
   try {
     const {comment, lat, long} = req.body;
 
-    const image = req.file;
+    const images = req.files;
 
-    if (!image) {
+    if (!images || !images.length) {
       return res.status(400).send({
         ok: false,
-        message: "Attached file's type is not image"
+        message: "Attached file doesn't match the image"
       })
     }
 
@@ -26,7 +26,11 @@ export const createLocationData = async (req, res) => {
       });
     }
 
-    const imageUrl = image.path;
+    const fileUrls = req.files.map(file => ({
+      url: `images/${file.filename}`
+    }));
+
+
     const dbPath = path.join('db', 'db.json');
 
     const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
@@ -34,9 +38,8 @@ export const createLocationData = async (req, res) => {
     data.push({
       id: uuidv4(),
       comment,
-      lat,
-      long,
-      imageUrl,
+      location: [lat, long],
+      images: fileUrls,
       date: new Date().toLocaleString()
     })
 
@@ -69,7 +72,7 @@ export const getLocationData = async (req, res) => {
 
     const data = JSON.parse(await fs.readFile(path.join('db', 'db.json'), {encoding: 'utf-8'}));
 
-    const findData = data.find((d) => d.lat === lat && d.long === long);
+    const findData = data.find((d) => d.location[0] === lat && d.location[1] === long);
 
 
     if(!findData) {

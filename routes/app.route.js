@@ -1,5 +1,8 @@
+import * as path from "path";
+
 import {Router} from 'express';
 
+import {v4 as uuidv4} from 'uuid';
 
 const router = Router();
 
@@ -9,11 +12,12 @@ import multer from "multer";
 
 
 const fileStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'images');
+  destination: (req, file, cb) => {
+    cb(null, 'images'); // Ensure this directory exists
   },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+  filename: (req, file, cb) => {
+    const uniqueName = uuidv4() + path.extname(file.originalname);
+    cb(null, uniqueName);
   }
 });
 

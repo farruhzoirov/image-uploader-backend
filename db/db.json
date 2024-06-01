@@ -1,7 +1,8 @@
 [
   {
-    "long": "fzoirov@gmail.com",
-    "lat": "Farruh0911",
+    "location": [
+      "ok", "okk"
+    ],
     "commit": "Location comment",
     "imageUrl": "image.png"
   }
