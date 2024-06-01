@@ -13,7 +13,6 @@ import router  from './routes/app.route.js'
 
 
 
-app.use(express.static(path.join(path.resolve(), 'frontend')));
 app.use('/images', express.static('images'));
 
 app.use(router)
