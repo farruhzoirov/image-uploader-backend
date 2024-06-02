@@ -41,7 +41,6 @@ router.post('/create-location-data', uploader.array('images', 5), (req, res, nex
       message: 'No files uploaded'
     });
   }
-  next();
 }, createLocationData);
 
 
