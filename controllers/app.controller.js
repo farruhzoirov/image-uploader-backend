@@ -84,7 +84,7 @@ export const getLocationData = async (req, res) => {
     const {lat, long} = req.body;
 
 
-    if (!lat || !isString(lat) || !long || !isString(long)) {
+    if (!lat || !isNumber(lat) || !long || !isNumber(long)) {
       return res.status(400).send({
         ok: false,
         message: 'Invalid data'
