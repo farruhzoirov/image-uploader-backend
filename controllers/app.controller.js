@@ -6,20 +6,31 @@ import {isString} from '../helpers/helper.js';
 
 
 export const getAllData = async (req, res) => {
+  try {
+    const dbPath = path.join('db', 'db.json');
+    const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
 
-  const dbPath = path.join('db', 'db.json');
+    if (!data) {
+      return res.status(404).json({
+        ok: false,
+        message: "No such database"
+      })
+    }
 
-  const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
+    res.status(200).json({
+      ok: true,
+      data: data
+    })
+  } catch (e) {
+    console.log("Getting all data", e);
+  }
 }
-
-
 
 
 // To create  data
 export const createLocationData = async (req, res) => {
   try {
     const {comment, lat, long} = req.body;
-    console.log(req.body)
     const images = req.files;
 
     if (!images || !images.length) {
@@ -65,12 +76,10 @@ export const createLocationData = async (req, res) => {
 };
 
 
-
-
 // To get  data
 export const getLocationData = async (req, res) => {
   try {
-    const { lat, long  } = req.body;
+    const {lat, long} = req.body;
 
 
     if (!lat || !isString(lat) || !long || !isString(long)) {
@@ -85,9 +94,9 @@ export const getLocationData = async (req, res) => {
     const findData = data.find((d) => d.location[0] === lat && d.location[1] === long);
 
 
-    if(!findData) {
+    if (!findData) {
       return res.status(404).send({
-        ok:false,
+        ok: false,
         message: 'Location does not exist'
       })
     }

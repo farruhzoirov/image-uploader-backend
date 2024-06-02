@@ -6,8 +6,7 @@ import {v4 as uuidv4} from 'uuid';
 
 const router = Router();
 
-import {createLocationData} from '../controllers/app.controller.js';
-import {getLocationData} from "../controllers/app.controller.js";
+import {createLocationData, getAllData, getLocationData} from '../controllers/app.controller.js';
 import multer from "multer";
 
 
@@ -36,7 +35,7 @@ const uploader = multer({storage: fileStorage, fileFilter: fileFilter});
 
 router.post('/create-location-data', uploader.array('images', 5), createLocationData);
 
-
+router.get('/get-all-data', getAllData);
 
 router.post('/get-location-data', getLocationData);
 
