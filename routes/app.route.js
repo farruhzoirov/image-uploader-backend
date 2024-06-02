@@ -15,7 +15,7 @@ const fileStorage = multer.diskStorage({
     cb(null, 'images'); // Ensure this directory exists
   },
   filename: (req, file, cb) => {
-    const uniqueName = uuidv4() + path.extname(file.originalname);
+    const uniqueName = uuidv4() + path.extname(file.originalname.toLowerCase());
     cb(null, uniqueName);
   }
 });
