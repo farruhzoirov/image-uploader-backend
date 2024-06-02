@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs/promises";
 import {v4 as uuidv4} from 'uuid';
 
-import {isString} from '../helpers/helper.js';
+import {isNumber, isString} from '../helpers/helper.js';
 
 // Getting all data
 export const getAllData = async (req, res) => {
@@ -43,7 +43,7 @@ export const createLocationData = async (req, res) => {
       })
     }
 
-    if (!comment || !isString(comment) || !lat || !isString(lat) || !long || !isString(long)) {
+    if (!comment || !isString(comment) || !lat || !isNumber(lat) || !long || !isNumber(long)) {
       return res.status(400).send({
         ok: false,
         message: 'Invalid data'

@@ -1,8 +1,10 @@
+export const isNumber = function(text) {
+  return typeof text === 'number'
+}
+
+
 export const isString = function(text) {
-  if (typeof text === "undefined" || text === null || typeof text !== "string") {
-    return false;
-  }
-  return true;
+  return typeof text === 'string'
 }
 
 
