@@ -16,6 +16,7 @@ export const getAllData = async (req, res) => {
         message: "No such database"
       })
     }
+
     res.status(200).json({
       ok: true,
       data: data
