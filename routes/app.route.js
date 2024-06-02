@@ -34,14 +34,7 @@ const fileFilter = (req, file, cb) => {
 const uploader = multer({storage: fileStorage, fileFilter: fileFilter});
 
 
-router.post('/create-location-data', uploader.array('images', 5), (req, res, next) => {
-  if (!req.files) {
-    return res.status(400).json({
-      ok: false,
-      message: 'No files uploaded'
-    });
-  }
-}, createLocationData);
+router.post('/create-location-data', uploader.array('images', 5), createLocationData);
 
 
 

@@ -14,7 +14,7 @@ import router from './routes/app.route.js'
 
 
 app.use('/images', express.static('images'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(router)
 
 // Server is running here

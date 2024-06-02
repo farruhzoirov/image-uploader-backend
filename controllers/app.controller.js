@@ -19,7 +19,7 @@ export const getAllData = async (req, res) => {
 export const createLocationData = async (req, res) => {
   try {
     const {comment, lat, long} = req.body;
-
+    console.log(req.body)
     const images = req.files;
 
     if (!images || !images.length) {
@@ -29,7 +29,7 @@ export const createLocationData = async (req, res) => {
       })
     }
 
-    if (!comment || !isString(comment) || !lat || !isString(lat) || !long || isString(long)) {
+    if (!comment || !isString(comment) || !lat || !isString(lat) || !long || !isString(long)) {
       return res.status(400).send({
         ok: false,
         message: 'Invalid data'
