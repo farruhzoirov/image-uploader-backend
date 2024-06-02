@@ -5,6 +5,16 @@ import {v4 as uuidv4} from 'uuid';
 import {isString} from '../helpers/helper.js';
 
 
+export const getAllData = async (req, res) => {
+
+  const dbPath = path.join('db', 'db.json');
+
+  const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
+}
+
+
+
+
 // To create  data
 export const createLocationData = async (req, res) => {
   try {

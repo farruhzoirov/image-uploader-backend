@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 import {APP_PORT} from './config.js';
 
@@ -13,7 +14,7 @@ import router from './routes/app.route.js'
 
 
 app.use('/images', express.static('images'));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router)
 
 // Server is running here
