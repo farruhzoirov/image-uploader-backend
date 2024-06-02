@@ -1,10 +1,10 @@
 import * as path from "path";
+import {v4 as uuidv4} from 'uuid';
 
 import {Router} from 'express';
 
-import {v4 as uuidv4} from 'uuid';
-
 const router = Router();
+
 
 import {createLocationData, getAllData, getLocationData} from '../controllers/app.controller.js';
 import multer from "multer";
@@ -29,9 +29,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-
 const uploader = multer({storage: fileStorage, fileFilter: fileFilter});
-
 
 router.post('/create-location-data', uploader.array('images', 5), createLocationData);
 
