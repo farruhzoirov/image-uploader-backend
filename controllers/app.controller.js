@@ -4,7 +4,7 @@ import {v4 as uuidv4} from 'uuid';
 
 import {isString} from '../helpers/helper.js';
 
-
+// Getting all data
 export const getAllData = async (req, res) => {
   try {
     const dbPath = path.join('db', 'db.json');
@@ -16,7 +16,6 @@ export const getAllData = async (req, res) => {
         message: "No such database"
       })
     }
-
     res.status(200).json({
       ok: true,
       data: data
@@ -25,7 +24,6 @@ export const getAllData = async (req, res) => {
     console.log("Getting all data", e);
   }
 }
-
 
 // To create  data
 export const createLocationData = async (req, res) => {
@@ -75,7 +73,6 @@ export const createLocationData = async (req, res) => {
   }
 };
 
-
 // To get  data
 export const getLocationData = async (req, res) => {
   try {
@@ -92,7 +89,6 @@ export const getLocationData = async (req, res) => {
     const data = JSON.parse(await fs.readFile(path.join('db', 'db.json'), {encoding: 'utf-8'}));
 
     const findData = data.find((d) => d.location[0] === lat && d.location[1] === long);
-
 
     if (!findData) {
       return res.status(404).send({
