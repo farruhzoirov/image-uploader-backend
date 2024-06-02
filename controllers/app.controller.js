@@ -23,6 +23,10 @@ export const getAllData = async (req, res) => {
     })
   } catch (e) {
     console.log("Getting all data", e);
+    return res.status(500).json({
+      ok: false,
+      error: e
+    })
   }
 }
 
