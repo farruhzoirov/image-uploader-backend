@@ -9,7 +9,7 @@ export const getAllData = async (req, res) => {
   try {
     const dbPath = path.join('db', 'db.json');
     const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
-
+    console.log(data)
     if (!data) {
       return res.status(404).json({
         ok: false,
@@ -18,7 +18,7 @@ export const getAllData = async (req, res) => {
     }
     res.status(200).json({
       ok: true,
-      data: data
+      data:data
     })
   } catch (e) {
     console.log("Getting all data", e);
@@ -50,13 +50,13 @@ export const createLocationData = async (req, res) => {
     const rawData = await fs.readFile(dbPath, { encoding: 'utf-8' });
     const locationData = JSON.parse(rawData) || [];
 
-    const existingLocation = locationData.find(loc =>
+    const existingLocation = locationData.filter(loc =>
         loc.location[0] === lat && loc.location[1] === long
     );
 
-    if (existingLocation) {
-      existingLocation.images = [];
-      existingLocation.images.push(...fileUrls);
+    if (existingLocation.length) {
+      existingLocation[0].images = [];
+      existingLocation[0].images.push(...fileUrls);
 
       await fs.writeFile(dbPath, JSON.stringify(existingLocation, null, 2));
 
