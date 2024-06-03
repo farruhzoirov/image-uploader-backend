@@ -55,7 +55,6 @@ export const createLocationData = async (req, res) => {
     );
 
     if (existingLocation.length) {
-      existingLocation[0].images = [];
       existingLocation[0].images.push(...fileUrls);
 
       await fs.writeFile(dbPath, JSON.stringify(existingLocation, null, 2));

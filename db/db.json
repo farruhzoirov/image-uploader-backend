@@ -1,47 +1,43 @@
 [
   {
-    "id": "2364420b-aa78-4018-8b07-b9fe5971e0cb",
-    "comment": "Bu damir yol instdan olingan rasmlar",
+    "id": "8a24c6ab-24c8-4497-bfb5-eaaeceb6ee8a",
     "location": [
-      "41.276110359797876",
-      "69.28055044319152"
+      "41.27454418395083",
+      "69.2810332408142"
     ],
     "images": [
       {
-        "url": "images/a0cad65f-c567-4838-aae4-8dad852beacc.jpg"
-      }
-    ],
-    "date": "6/3/2024, 12:18:33 PM"
-  },
-  {
-    "id": "f0af32de-5dc9-41ff-8cf8-9c4779eff314",
-    "comment": "Bu damir yol instdan olingan rasmlar",
-    "location": [
-      "41.275992999095834",
-      "69.28117271568294"
-    ],
-    "images": [
-      {
-        "url": "images/00c198eb-c4b2-45fa-896f-1c56f6dadb43.jpg"
-      }
-    ],
-    "date": "6/3/2024, 12:36:50 PM"
-  },
-  {
-    "id": "7a742447-5dfd-4bb6-b077-668891a4f17d",
-    "comment": "Bu damir yol instdan olingan rasmlar",
-    "location": [
-      "41.27480319238869",
-      "69.28132291938778"
-    ],
-    "images": [
-      {
-        "url": "images/9ef3de51-784b-49fe-b62f-3972b73fbfd3.jpg"
+        "url": "images/ac2c8191-d1d1-4854-984d-66593a169c02.jpg"
       },
       {
-        "url": "images/03c5dd6e-a988-45ee-8d01-c025ce5906b1.jpg"
+        "url": "images/bbfb3e92-0c24-474f-9cce-723adee4c451.jpg"
+      },
+      {
+        "url": "images/d9b7d5f1-4966-4096-9496-8131b77decf2.png"
+      },
+      {
+        "url": "images/81543515-7c5b-4e2a-9be7-f9914430b3ba.jpg"
+      },
+      {
+        "url": "images/a3999a63-fc31-4549-b2ef-3048c696324a.jpg"
+      },
+      {
+        "url": "images/b2f2c5e4-8a2a-4b2d-8173-cc5f16cb7552.jpg"
       }
     ],
-    "date": "6/3/2024, 2:21:45 PM"
+    "date": "Mon Jun 03 2024 15:41:49 GMT+0500 (Uzbekistan Standard Time)"
+  },
+  {
+    "id": "124ab94a-19fb-40cf-b3b8-a1888b33efad",
+    "location": [
+      "41.275580211489284",
+      "69.28130146171567"
+    ],
+    "images": [
+      {
+        "url": "images/477f46e9-9217-42ea-80b0-cb378a6254e5.jpg"
+      }
+    ],
+    "date": "Mon Jun 03 2024 15:54:56 GMT+0500 (Uzbekistan Standard Time)"
   }
 ]
