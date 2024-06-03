@@ -32,6 +32,7 @@ export const getAllData = async (req, res) => {
 // To create data
 export const createLocationData = async (req, res) => {
   try {
+    console.log(req.body)
     const { lat, long } = req.body;
     const uploadedFiles = req.files;
 
@@ -50,14 +51,15 @@ export const createLocationData = async (req, res) => {
     const rawData = await fs.readFile(dbPath, { encoding: 'utf-8' });
     const locationData = JSON.parse(rawData) || [];
 
-    const existingLocation = locationData.filter(loc =>
-        +loc.location[0] === lat && +loc.location[1] === long
+    const existingLocation = locationData.find(loc =>
+        loc.location[0] === lat && loc.location[1] === long
     );
 
-    if (existingLocation.length) {
-      existingLocation[0].images.push(...fileUrls);
 
-      await fs.writeFile(dbPath, JSON.stringify(existingLocation, null, 2));
+    if (existingLocation) {
+      existingLocation.images.push(...fileUrls);
+      console.log('reached')
+      await fs.writeFile(dbPath, JSON.stringify(locationData, null, 2));
 
       return res.status(200).json({
         ok: true,
