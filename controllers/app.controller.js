@@ -83,14 +83,6 @@ export const getLocationData = async (req, res) => {
   try {
     const {lat, long} = req.body;
 
-
-    if (!lat || !isNumber(lat) || !long || !isNumber(long)) {
-      return res.status(400).send({
-        ok: false,
-        message: 'Invalid data'
-      });
-    }
-
     const data = JSON.parse(await fs.readFile(path.join('db', 'db.json'), {encoding: 'utf-8'}));
 
     const findData = data.find((d) => +d.location[0] === lat && +d.location[1] === long);
