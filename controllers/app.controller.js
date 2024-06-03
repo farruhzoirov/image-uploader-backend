@@ -29,57 +29,63 @@ export const getAllData = async (req, res) => {
   }
 }
 
-// To create  data
+// To create data
 export const createLocationData = async (req, res) => {
   try {
-    const {lat, long} = req.body;
-    const images = req.files;
+    const { lat, long } = req.body;
+    const uploadedFiles = req.files;
 
-    if (!images || !images.length) {
+    if (!uploadedFiles || !uploadedFiles.length) {
       return res.status(400).send({
         ok: false,
         message: "Attached file doesn't match the image"
-      })
+      });
     }
 
-    const fileUrls = req.files.map(file => ({
+    const fileUrls = uploadedFiles.map(file => ({
       url: `images/${file.filename}`
     }));
 
     const dbPath = path.join('db', 'db.json');
+    const rawData = await fs.readFile(dbPath, { encoding: 'utf-8' });
+    const locationData = JSON.parse(rawData) || [];
 
-    const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
+    const existingLocation = locationData.find(location =>
+        +location.coordinates[0] === lat && +location.coordinates[1] === long
+    );
 
-    const checkedData = data.find((d) => +d.location[0] === lat && +d.location[1] === long);
-
-    if (checkedData) {
-      checkedData.images = [];
-
-      checkedData.images.push(...fileUrls);
+    if (existingLocation) {
+      existingLocation.images = [];
+      existingLocation.images.push(...fileUrls);
 
       return res.status(200).json({
         ok: true,
-        message: `Image updated successfully.`,
-      })
+        message: "Images updated successfully.",
+      });
     }
 
-    data.push({
+    locationData.push({
       id: uuidv4(),
-      location: [lat, long],
+      coordinates: [lat, long],
       images: fileUrls,
       date: new Date().toString()
-    })
+    });
 
-    await fs.writeFile(dbPath, JSON.stringify(data, null, 2))
+    await fs.writeFile(dbPath, JSON.stringify(locationData, null, 2));
 
     return res.status(200).send({
       ok: true,
-      message: 'Location data  created successfully'
+      message: "Location data created successfully"
     });
-  } catch (e) {
-    console.log('CreateLocationData error', e);
+  } catch (error) {
+    console.log('CreateLocationData error', error);
+    return res.status(500).send({
+      ok: false,
+      message: "An error occurred while creating location data"
+    });
   }
 };
+
 
 // To get  data
 export const getLocationData = async (req, res) => {
