@@ -50,8 +50,8 @@ export const createLocationData = async (req, res) => {
     const rawData = await fs.readFile(dbPath, { encoding: 'utf-8' });
     const locationData = JSON.parse(rawData) || [];
 
-    const existingLocation = locationData.find(location =>
-        +location.coordinates[0] === lat && +location.coordinates[1] === long
+    const existingLocation = locationData.find(loc =>
+        +loc.location[0] === lat && +loc.location[1] === long
     );
 
     if (existingLocation) {
@@ -66,7 +66,7 @@ export const createLocationData = async (req, res) => {
 
     locationData.push({
       id: uuidv4(),
-      coordinates: [lat, long],
+      location: [lat, long],
       images: fileUrls,
       date: new Date().toString()
     });
