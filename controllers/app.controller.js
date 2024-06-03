@@ -51,12 +51,14 @@ export const createLocationData = async (req, res) => {
     const locationData = JSON.parse(rawData) || [];
 
     const existingLocation = locationData.find(loc =>
-        +loc.location[0] === lat && +loc.location[1] === long
+        loc.location[0] === lat && loc.location[1] === long
     );
 
     if (existingLocation) {
       existingLocation.images = [];
       existingLocation.images.push(...fileUrls);
+
+      await fs.writeFile(dbPath, JSON.stringify(existingLocation, null, 2));
 
       return res.status(200).json({
         ok: true,
