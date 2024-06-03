@@ -16,7 +16,6 @@ export const getAllData = async (req, res) => {
         message: "No such database"
       })
     }
-
     res.status(200).json({
       ok: true,
       data: data
@@ -33,7 +32,7 @@ export const getAllData = async (req, res) => {
 // To create  data
 export const createLocationData = async (req, res) => {
   try {
-    const {comment, lat, long} = req.body;
+    const {lat, long} = req.body;
     const images = req.files;
 
     if (!images || !images.length) {
@@ -42,6 +41,7 @@ export const createLocationData = async (req, res) => {
         message: "Attached file doesn't match the image"
       })
     }
+
     const fileUrls = req.files.map(file => ({
       url: `images/${file.filename}`
     }));
@@ -65,10 +65,9 @@ export const createLocationData = async (req, res) => {
 
     data.push({
       id: uuidv4(),
-      comment,
       location: [lat, long],
       images: fileUrls,
-      date: new Date().toLocaleString()
+      date: new Date().toString()
     })
 
     await fs.writeFile(dbPath, JSON.stringify(data, null, 2))
