@@ -43,12 +43,12 @@ export const createLocationData = async (req, res) => {
       })
     }
 
-    if (!comment || !isString(comment) || !lat || !isNumber(lat) || !long || !isNumber(long)) {
-      return res.status(400).send({
-        ok: false,
-        message: 'Invalid data'
-      });
-    }
+    // if (!comment || !isString(comment) || !lat || !isNumber(lat) || !long || !isNumber(long)) {
+    //   return res.status(400).send({
+    //     ok: false,
+    //     message: 'Invalid data'
+    //   });
+    // }
 
     const fileUrls = req.files.map(file => ({
       url: `images/${file.filename}`
@@ -93,7 +93,7 @@ export const getLocationData = async (req, res) => {
 
     const data = JSON.parse(await fs.readFile(path.join('db', 'db.json'), {encoding: 'utf-8'}));
 
-    const findData = data.find((d) => d.location[0] === lat && d.location[1] === long);
+    const findData = data.find((d) => +d.location[0] === lat && +d.location[1] === long);
 
     if (!findData) {
       return res.status(404).send({
