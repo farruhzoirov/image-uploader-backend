@@ -42,22 +42,26 @@ export const createLocationData = async (req, res) => {
         message: "Attached file doesn't match the image"
       })
     }
-
-    // if (!comment || !isString(comment) || !lat || !isNumber(lat) || !long || !isNumber(long)) {
-    //   return res.status(400).send({
-    //     ok: false,
-    //     message: 'Invalid data'
-    //   });
-    // }
-
     const fileUrls = req.files.map(file => ({
       url: `images/${file.filename}`
     }));
 
-
     const dbPath = path.join('db', 'db.json');
 
     const data = JSON.parse(await fs.readFile(dbPath, {encoding: 'utf-8'})) || [];
+
+    const checkedData = data.find((d) => +d.location[0] === lat && +d.location[1] === long);
+
+    if (checkedData) {
+      checkedData.images = [];
+
+      checkedData.images.push(...fileUrls);
+
+      return res.status(200).json({
+        ok: true,
+        message: `Image updated successfully.`,
+      })
+    }
 
     data.push({
       id: uuidv4(),
