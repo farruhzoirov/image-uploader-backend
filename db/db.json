@@ -1,43 +1,18 @@
 [
   {
-    "id": "8a24c6ab-24c8-4497-bfb5-eaaeceb6ee8a",
+    "id": "62df3ea4-d7ce-4b4f-9713-57325c22b0eb",
     "location": [
-      "41.27454418395083",
-      "69.2810332408142"
+      "41.27496507213652",
+      "69.2798852553558"
     ],
     "images": [
       {
-        "url": "images/ac2c8191-d1d1-4854-984d-66593a169c02.jpg"
+        "url": "images/82c6258f-d49a-4b9a-bdaa-3a8ae6913da8.jpg"
       },
       {
-        "url": "images/bbfb3e92-0c24-474f-9cce-723adee4c451.jpg"
-      },
-      {
-        "url": "images/d9b7d5f1-4966-4096-9496-8131b77decf2.png"
-      },
-      {
-        "url": "images/81543515-7c5b-4e2a-9be7-f9914430b3ba.jpg"
-      },
-      {
-        "url": "images/a3999a63-fc31-4549-b2ef-3048c696324a.jpg"
-      },
-      {
-        "url": "images/b2f2c5e4-8a2a-4b2d-8173-cc5f16cb7552.jpg"
+        "url": "images/3456d2c5-e0fc-4640-871b-bd16e221221e.jpg"
       }
     ],
-    "date": "Mon Jun 03 2024 15:41:49 GMT+0500 (Uzbekistan Standard Time)"
-  },
-  {
-    "id": "124ab94a-19fb-40cf-b3b8-a1888b33efad",
-    "location": [
-      "41.275580211489284",
-      "69.28130146171567"
-    ],
-    "images": [
-      {
-        "url": "images/477f46e9-9217-42ea-80b0-cb378a6254e5.jpg"
-      }
-    ],
-    "date": "Mon Jun 03 2024 15:54:56 GMT+0500 (Uzbekistan Standard Time)"
+    "date": "Mon Jun 03 2024 17:46:59 GMT+0500 (Uzbekistan Standard Time)"
   }
 ]
